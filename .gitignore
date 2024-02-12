@@ -12,6 +12,7 @@
 **/*-hidden*
 **/todelete
 gh-*
+.python-version
 
 # General
 *poetry.lock
