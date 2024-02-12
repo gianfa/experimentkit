@@ -40,7 +40,7 @@ sum_x_squared = sum(x[i] ** 2 for i in range(n))
 
 m = (n * sum_xy - sum_x * sum_y) / (n * sum_x_squared - sum_x ** 2)
 b = (sum_y - m * sum_x) / n
-predicted_y = [m * xi + b for xi in x]
+y_pred = [m * xi + b for xi in x]
 report.add_txt("2. Perform the linear regression") 
 
 report.add_txt("## Methods\n")
@@ -49,7 +49,7 @@ report.add_txt("Line equation:\n$Y_{pred} = mX + b$")
 # Plot
 fig, ax = plt.subplots()
 ax.scatter(x, y, label='data')
-ax.plot(x, predicted_y, color='red', label='LinReg')
+ax.plot(x, y_pred, color='red', label='LinReg')
 ax.set(
     title='Linear Regression',
     xlabel='X',
@@ -63,5 +63,14 @@ report.add_txt("## Results\n")
 report.add_img(REPORT_PATH/"linreg.png")
 
 # Now check the created .md file and see the result!
+
+# %%
+
+import numpy as np
+from experimentkit.evaluation.regression import regression_report
+
+
+perf = regression_report(np.array(y), np.array(y_pred))
+perf
 
 # %%
