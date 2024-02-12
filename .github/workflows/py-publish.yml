@@ -1,0 +1,27 @@
+# Publishing pipeline
+# ref: https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+
+name: Publish Python distribution 📦 to PyPI
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'releases/**'
+
+jobs:
+  build:
+    name: Build distribution 📦
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository # You must checkout your repository first.
+      uses: actions/checkout@v3
+
+    - name: Publish Package
+      uses: celsiusnarhwal/poetry-publish@v2
+      with:
+        python-version: 3.9
+        poetry-version: 1.7.0
+        token: ${{ secrets.PYPI_TOKEN }}
+        build: true
