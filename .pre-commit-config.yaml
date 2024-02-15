@@ -7,3 +7,10 @@ repos:
     rev: '1.7.1'  # add version here
     hooks:
     -   id: poetry-check
+-   repo: local
+    hooks:
+    -   id: update-readme-version
+        name: Update README version badge
+        entry: /Users/giana/Library/Caches/pypoetry/virtualenvs/experimentkit-MpqfXCwg-py3.9/bin/python precommit/update_readme_version.py
+        language: system
+        types: [python]
