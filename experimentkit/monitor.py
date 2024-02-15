@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 
 class Monitor:
-
     def __init__(
         self,
         x,

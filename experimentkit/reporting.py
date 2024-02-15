@@ -4,7 +4,6 @@ from pathlib import Path
 
 
 class ReportMD:
-
     def __init__(self, md_path: str, title: str = None, create: bool = True):
         md_path = Path(md_path)
         if not md_path.exists():
