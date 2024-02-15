@@ -4,7 +4,8 @@
 python -m pytest tests/experimentkit/test_environment.py -vv --pdb -s
 """
 import sys
-sys.path += ["../.."] # good to test in jupyter
+
+sys.path += ["../.."]  # good to test in jupyter
 
 import matplotlib.pyplot as plt
 

@@ -4,4 +4,4 @@ import scienceplots
 from .visualization import styles
 
 
-plt.style.use(styles['paper-1'])
+plt.style.use(styles["paper-1"])
