@@ -1,10 +1,11 @@
 """ Visualization utilities"""
 
 from typing import Dict, Iterable, List
+
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import scienceplots
+import seaborn as sns
 
 
 def plot_n_examples(X: np.ndarray, n: int, cols: int = 2, labels: List[str] = None):

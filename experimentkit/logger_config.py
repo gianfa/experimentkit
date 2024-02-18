@@ -1,5 +1,5 @@
-from pathlib import Path
 import logging.config
+from pathlib import Path
 
 
 def setup_logger(

@@ -2,8 +2,8 @@
 
 """
 
-from IPython import get_ipython
 import matplotlib.pyplot as plt
+from IPython import get_ipython
 
 
 class Monitor:

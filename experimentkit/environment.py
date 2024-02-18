@@ -1,15 +1,18 @@
 """ Environment and profiling functions
 """
 
+import json
+import logging
 import platform
 import re
-import uuid, json, psutil, logging
 import sys
 import timeit
+import uuid
 from typing import Iterable
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import psutil
 
 
 def getsizeof_in(var, targetUnit):
