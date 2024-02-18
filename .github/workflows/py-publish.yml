@@ -37,7 +37,7 @@ jobs:
         git add pyproject.toml poetry.lock
         git commit -m "bump to v$(poetry version --short)"
         git push
-
+  
     - name: Publish Package
       if: env.publishPackage == 'true'
       uses: celsiusnarhwal/poetry-publish@v2
