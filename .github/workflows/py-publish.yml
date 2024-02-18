@@ -11,7 +11,7 @@ on:
       - 'develop'
 
 env:
-  publishPackage: false
+  publishPackage: true
 
 jobs:
 
