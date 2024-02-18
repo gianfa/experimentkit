@@ -9,8 +9,6 @@ on:
       - 'main'
       - 'releases/**'
       - 'develop'
-      # Test
-      - 'feature/ppl-bump_on_pr*'
 
 env:
   publishPackage: false
@@ -19,7 +17,7 @@ jobs:
 
   bump_version:
     name: Bump version
-    if: github.ref == 'refs/heads/feature/ppl-bump_on_pr2'
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
     - name: Setup Python
@@ -46,8 +44,6 @@ jobs:
 
     - name: Bump version
       run: |
-        echo "$(pwd) ; $(ls .)"
-        echo "TREE \n $(tree .)"
         poetry version patch
 
         git config --local user.name "gianfa"
