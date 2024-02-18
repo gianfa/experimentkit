@@ -9,6 +9,11 @@ on:
       - 'main'
       - 'releases/**'
       - 'develop'
+      # Test
+      - 'feature/ppl-bump_on_pr*'
+
+env:
+  publishPackage: false
 
 env:
   publishPackage: false
