@@ -1,14 +1,16 @@
-""" Utility functions 
+""" Utility functions
 
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
 import os
 import pickle
 import time
+from typing import Dict, Optional
 
+import matplotlib.pyplot as plt
+import numpy as np
 import torch
+import yaml
 
 
 def compare_sample_from_data(
@@ -58,7 +60,7 @@ def pickle_load(fpath: str):
     return f
 
 
-def generate_random_name(length: str = 22, with_timestamp: bool = True) -> str:
+def generate_random_name(length: int = 22, with_timestamp: bool = True) -> str:
     bank = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     tstamp = str(time.time()).replace(".", "d") if with_timestamp else ""
     to_len = length - len(tstamp)
@@ -69,3 +71,20 @@ def generate_random_name(length: str = 22, with_timestamp: bool = True) -> str:
         )
     rand_chars = "".join([bank[ci] for ci in np.random.choice(len(bank), to_len)])
     return f"{tstamp}-{rand_chars}"
+
+
+def load_yaml(fpath: str = "../params.yaml") -> Optional[Dict[str, object]]:
+    params = None
+    with open(fpath, "r") as stream:
+        try:
+            params = yaml.safe_load(stream)
+            print(params)
+        except yaml.YAMLError as e:
+            print(e)
+    return params
+
+
+def yaml_save_dict(fpath: str, d: dict) -> str:
+    with open(fpath, "w") as file:
+        yaml.dump(d, file)
+    return fpath
