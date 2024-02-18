@@ -43,13 +43,15 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Bump version
+      with:
+          token: ${{ secrets.GH_PAT }}
       run: |
         echo "$(pwd) ; $(ls .)"
         echo "TREE \n $(tree .)"
         poetry version patch
 
-        git config --local user.email "gian.angelini@hotmail.com"
         git config --local user.name "gianfa"
+        git config --local user.email "gian.angelini@hotmail.com"
         git add pyproject.toml
         git commit -m "bump to v$(poetry version --short)"
         git push
