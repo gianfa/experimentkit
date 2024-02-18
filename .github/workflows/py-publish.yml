@@ -10,19 +10,25 @@ on:
       - 'releases/**'
       - 'develop'
 
+env:
+  publishPackage: false
+
 jobs:
   build:
     name: Build distribution 📦
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository # You must checkout your repository first.
+    - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Bump if PR is merged
-      if: github.event.pull_request.merged == true
+    - name: debug
+      run: echo github.ref, echo github.event_name
+
+    - name: Bump version
+      if: github.event_name == 'pull_request' && github.ref == 'refs/heads/feature/ppl-bump_on_pr'
       run: |
-        poetry version minor
+        poetry version patch
 
         git config --local user.email "gian.angelini@hotmail.com"
         git config --local user.name "gianfa"
@@ -31,6 +37,7 @@ jobs:
         git push
 
     - name: Publish Package
+      if: env.publishPackage == 'true'
       uses: celsiusnarhwal/poetry-publish@v2
       with:
         python-version: 3.9
