@@ -15,6 +15,9 @@ on:
 env:
   publishPackage: false
 
+env:
+  publishPackage: false
+
 jobs:
   build:
     name: Build distribution 📦
