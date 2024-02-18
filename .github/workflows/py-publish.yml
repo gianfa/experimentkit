@@ -41,6 +41,8 @@ jobs:
 
     - name: Bump version
       run: |
+        echo "$(pwd) ; $(ls .)"
+        echo "tree ."
         poetry version patch
 
         git config --local user.email "gian.angelini@hotmail.com"
@@ -52,6 +54,8 @@ jobs:
 
   build:
     name: Build distribution 📦
+    needs: bump_version
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
