@@ -49,7 +49,7 @@ jobs:
         git config --local user.name "gianfa"
         git config --local user.email "gian.angelini@hotmail.com"
         git add pyproject.toml
-        git commit -m "bump to v$(poetry version --short)"
+        git commit -m "bump to v$(poetry version --short) [skip ci]"
         git push
 
 
