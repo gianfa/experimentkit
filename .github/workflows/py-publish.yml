@@ -16,6 +16,40 @@ env:
   publishPackage: false
 
 jobs:
+
+  bump_version:
+    name: Bump version
+    if: github.ref == 'refs/heads/feature/ppl-bump_on_pr2'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.0
+
+    - name: Install poetry
+      run: python -m pip install poetry==1.7.1
+
+    - name: Configure poetry
+      run: python -m poetry config virtualenvs.in-project true
+
+    - name: Cache the virtualenv
+      uses: actions/cache@v2
+      with:
+        path: ./.venv
+        key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Bump version
+      run: |
+        poetry version patch
+
+        git config --local user.email "gian.angelini@hotmail.com"
+        git config --local user.name "gianfa"
+        git add pyproject.toml poetry.lock
+        git commit -m "bump to v$(poetry version --short)"
+        git push
+
+
   build:
     name: Build distribution 📦
     runs-on: ubuntu-latest
@@ -26,17 +60,6 @@ jobs:
 
     - name: debug
       run: echo github.ref, echo github.event_name
-
-    - name: Bump version
-      if: github.ref == 'refs/heads/feature/ppl-bump_on_pr2'
-      run: |
-        poetry version patch
-
-        git config --local user.email "gian.angelini@hotmail.com"
-        git config --local user.name "gianfa"
-        git add pyproject.toml poetry.lock
-        git commit -m "bump to v$(poetry version --short)"
-        git push
 
     - name: Publish Package
       if: env.publishPackage == 'true'
