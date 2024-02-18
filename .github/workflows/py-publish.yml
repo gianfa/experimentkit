@@ -18,6 +18,17 @@ jobs:
     - name: Checkout Repository # You must checkout your repository first.
       uses: actions/checkout@v3
 
+    - name: Bump if PR is merged
+      if: github.event.pull_request.merged == true
+      run: |
+        poetry version minor
+
+        git config --local user.email "gian.angelini@hotmail.com"
+        git config --local user.name "gianfa"
+        git add pyproject.toml poetry.lock
+        git commit -m "bump to v$(poetry version --short)"
+        git push
+
     - name: Publish Package
       uses: celsiusnarhwal/poetry-publish@v2
       with:
