@@ -39,10 +39,13 @@ jobs:
         path: ./.venv
         key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
 
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
     - name: Bump version
       run: |
         echo "$(pwd) ; $(ls .)"
-        echo "tree ."
+        echo "TREE \n $(tree .)"
         poetry version patch
 
         git config --local user.email "gian.angelini@hotmail.com"
