@@ -1,6 +1,6 @@
 # Experiment Kit 🧪
 
-![Static Badge](https://img.shields.io/badge/v0.1.1-blue)
+![Static Badge](https://img.shields.io/badge/v0.1.16-blue)
 
 Framework for creating and maintaining projects for study and research purposes.
 
